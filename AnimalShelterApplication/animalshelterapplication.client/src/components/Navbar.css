@@ -1,0 +1,118 @@
+.site-header {
+    background-color: #FAF8F3;
+    padding: 15px 5%;
+}
+
+.navbar {
+
+    max-width: 1400px;
+    min-height: 85px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    background-color: #FFFFFF;
+    border: 2px solid #C8D2C8;
+    border-radius: 10px;
+    padding: 0 25px;
+
+}
+
+.brand {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #385B48;
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+
+}
+
+.brand-icon {
+
+    font-size: 1.8rem;
+
+}
+
+.nav-links {
+
+    display: flex;
+    align-items: center;
+    gap: 35px;
+
+}
+
+.nav-links a {
+
+    color: #292D29;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+}
+
+.nav-links a:hover {
+
+    color: #385B48;
+
+}
+
+.nav-logout {
+
+    background-color: #385B48;
+    color: #FFFFFF;
+
+    padding: 11px 25px;
+    border: 2px solid #385B48;
+    border-radius: 7px;
+
+    font-weight: 600;
+    text-decoration: none;
+    transition: background color 0.2s ease;
+
+}
+
+.nav-logout:hover {
+
+    background-color: #294536;
+    border-color: #294536;
+
+}
+
+/* Responsive layout fro smalle screens */
+
+@media (max-width: 750px) {
+
+    .navbar {
+
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 18px 0;
+        gap: 18px;
+
+    }
+
+    .nav-links {
+
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+
+    }
+
+}
+
+
+
+
+
