@@ -1,27 +1,28 @@
 //import the styling
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 //function for the navigation bar component, has so parameters as it is the same for users
 function Navbar() {
   return (
 
-      <header classname="site-header">
+      <header className="site-header">
 
           <nav className="navbar">
 
               
-              <a className="brand" href="/">
+              <Link className="brand" to="/">
                   <span className="brand-icon">🐾</span>
                   <span>Animal Shelter</span>
-              </a>
+              </Link>
 
 
               
               <div className="nav-links">
-                  <a href="/">Home</a>
-                  <a href="/adopt">Adopt</a>
-                  <a href="/volunteer">Volunteer</a>
-                  <a href="/about">About</a>
+                  <Link to="/">Home</Link>
+                  <Link to="/adopt">Adopt</Link>
+                  <Link to="/volunteer">Volunteer</Link>
+                  <Link to="/about">About</Link>
               </div>
 
 
