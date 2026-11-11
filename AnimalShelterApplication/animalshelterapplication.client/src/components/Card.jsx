@@ -1,8 +1,8 @@
-
 import './Card.css';
+
 function Card({title, description, onAction, buttonText, imageUrl }) {
   return (
-      <button className="Card" onClick={onAction} type="button">
+      <button className="card" onClick={onAction} type="button">
           {imageUrl && (
             <img 
                 src={imageUrl} 
