@@ -1,13 +1,13 @@
-﻿using AnimalShelterApplication.Domain.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AnimalShelterApplication.Domain.Models
+namespace AnimalShelterApplication.Infrastructure.Data.Entities
 {
-    public class OwnedPet
+    public class ApplicantOwnedPetEntity
     {
         public int Id { get; set; }
+        public int ApplicationId { get; set; }
         public string Name { get; set; }
         public string Breed { get; set; }
         public string Gender { get; set; }

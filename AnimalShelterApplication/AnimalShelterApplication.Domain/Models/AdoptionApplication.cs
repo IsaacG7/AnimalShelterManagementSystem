@@ -15,6 +15,16 @@ namespace AnimalShelterApplication.Domain.Models
         public int YearsOfPetExperience { get; set; }
         public string HomeType { get; set; }
         public int NumOfHomeOccupants { get; set; }
-        public List<OwnedPet> CurrentPets { get; set; } = new List<OwnedPet>();
+        public List<ApplicantsOwnedPet> CurrentPets { get; set; } = new List<ApplicantsOwnedPet>();
+    }
+
+    public class ApplicantsOwnedPet
+    {
+        public int Id { get; set; }
+        public int ApplicationId { get; set; }
+        public string Name { get; set; }
+        public string Breed { get; set; }
+        public string Gender { get; set; }
+        public DateOnly DateOfBirth { get; set; }
     }
 }

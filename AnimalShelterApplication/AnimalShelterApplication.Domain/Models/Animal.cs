@@ -16,8 +16,8 @@ namespace AnimalShelterApplication.Domain.Models
         public AnimalAdptStatus Status { get; set; }
         public bool IsFixed { get; set; }
         public string BehavioralDetails { get; set; }
+        public string SpecialCareDetails { get; set; }
         public List<AnimalVaccination> Vaccinations { get; set; } = new List<AnimalVaccination>();
-        public List<AnimalDietaryRestriction> DietaryRestrictions{ get; set; } = new List<AnimalDietaryRestriction> { };
-        public List<string> SpecialCareDetails { get; set; } = new List<string>();
+        public List<AnimalDietaryRestriction> DietaryRestrictions { get; set; } = new List<AnimalDietaryRestriction> { };
     }
 }
