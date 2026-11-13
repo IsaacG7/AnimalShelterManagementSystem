@@ -1,5 +1,8 @@
 <Solution>
   <Folder Name="/Server/">
+    <Project Path="AnimalShelterApplication.Application/AnimalShelterApplication.Application.csproj" />
+    <Project Path="AnimalShelterApplication.Domain/AnimalShelterApplication.Domain.csproj" />
+    <Project Path="AnimalShelterApplication.Infrastructure/AnimalShelterApplication.Infrastructure.csproj" />
     <Project Path="AnimalShelterApplication.Server/AnimalShelterApplication.Server.csproj" />
   </Folder>
   <Project Path="animalshelterapplication.client/animalshelterapplication.client.esproj">
