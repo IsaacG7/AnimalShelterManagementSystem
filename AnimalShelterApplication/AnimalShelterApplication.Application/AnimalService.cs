@@ -14,7 +14,7 @@ namespace AnimalShelterApplication.Application
 
         public async Task<IReadOnlyCollection<Animal>> GetAllAnimalsAsync()
         {
-            var animals = await _repo.GetAllAnimalsAsync();
+            var animals = await _repo.RetrieveAllAnimalsAsync();
 
             return animals;
 

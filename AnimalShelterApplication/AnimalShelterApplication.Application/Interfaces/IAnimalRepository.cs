@@ -7,6 +7,6 @@ namespace AnimalShelterApplication.Application.Interfaces
 {
     public interface IAnimalRepository
     {
-        Task<IReadOnlyCollection<Animal>> GetAllAnimalsAsync();
+        Task<IReadOnlyCollection<Animal>> RetrieveAllAnimalsAsync();
     }
 }

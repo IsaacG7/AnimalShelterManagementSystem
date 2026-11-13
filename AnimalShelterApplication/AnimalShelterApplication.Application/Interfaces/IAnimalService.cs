@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AnimalShelterApplication.Application.Interfaces
 {
-     public interface IAnimalService
+    public interface IAnimalService
     {
         Task<IReadOnlyCollection<Animal>> GetAllAnimalsAsync();
     }

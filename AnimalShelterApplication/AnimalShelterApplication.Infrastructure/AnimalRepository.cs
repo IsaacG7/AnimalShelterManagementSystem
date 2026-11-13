@@ -1,4 +1,5 @@
-﻿using AnimalShelterApplication.Domain.Models;
+﻿using AnimalShelterApplication.Application.Interfaces;
+using AnimalShelterApplication.Domain.Models;
 using AnimalShelterApplication.Infrastructure.Data;
 using AnimalShelterApplication.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace AnimalShelterApplication.Infrastructure
 {
-    public class AnimalRepository
+    public class AnimalRepository : IAnimalRepository
     {
        private AnimalShelterDbContext _dbContext;
 
@@ -17,7 +18,7 @@ namespace AnimalShelterApplication.Infrastructure
             _dbContext = dbContext;
         }
 
-        public async Task<IReadOnlyCollection<Animal>> RetrieveAllAnimals()
+        public async Task<IReadOnlyCollection<Animal>> RetrieveAllAnimalsAsync()
         {
             var domainAnimals = new List<Animal>();
 

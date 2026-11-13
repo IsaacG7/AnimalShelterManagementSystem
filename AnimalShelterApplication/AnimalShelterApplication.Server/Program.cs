@@ -1,4 +1,7 @@
 
+using AnimalShelterApplication.Application;
+using AnimalShelterApplication.Application.Interfaces;
+using AnimalShelterApplication.Infrastructure;
 using AnimalShelterApplication.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IAnimalService, AnimalService>();
+
+builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
 
 builder.Services.AddDbContext<AnimalShelterDbContext>(optionsBuilder =>
 {
