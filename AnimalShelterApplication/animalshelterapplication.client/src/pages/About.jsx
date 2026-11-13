@@ -1,7 +1,13 @@
-
+import './About.css'
 
 function About() {
-  return (null);
+    return (
+  
+        <main className="About">
+
+        </main>
+    
+    );
 }
 
 export default About;

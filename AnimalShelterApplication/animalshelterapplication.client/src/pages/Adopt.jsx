@@ -1,7 +1,13 @@
-
-
+import './Adopt.css';
+import Hero from '../components/Hero';
 function Adopt() {
-    return (null);
+    return (
+    
+        <main className="Adopt">
+            <Hero buttonText="WOAHHH"/>
+        </main>
+    
+    );
 
 }
 
