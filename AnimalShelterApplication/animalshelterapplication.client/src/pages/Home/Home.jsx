@@ -1,9 +1,9 @@
 import './Home.css';
-import Hero from '../components/Hero';
-import Card from '../components/Card';
-import Footer from '../components/Footer';
+import Hero from '../../components/Hero/Hero';
+import Card from '../../components/Card/Card';
+import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import shelterDog from '../assets/images.jpg';
+import shelterDog from '../../assets/images.jpg';
 
 function Home() {
     const navigate = useNavigate();

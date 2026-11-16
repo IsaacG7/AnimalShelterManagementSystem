@@ -1,17 +1,18 @@
-﻿import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 
-import Home from './pages/Home';
-import Adopt from './pages/Adopt';
-import Volunteer from './pages/Volunteer';
-import About from './pages/About';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Adopt from './pages/Adopt/Adopt';
+import Volunteer from './pages/Volunteer/Volunteer';
+import SignIn from './pages/SignIn/SignIn';
+
 
 function App() {
     return (
-        <BrowserRouter>
-
+        <>
             <Navbar />
 
             <Routes>
@@ -19,9 +20,10 @@ function App() {
                 <Route path="/adopt" element={<Adopt />} />
                 <Route path="/volunteer" element={<Volunteer />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/sign-in" element={ SignIn}/>
             </Routes>
+        </>
 
-        </BrowserRouter>
     );
 }
 

@@ -1,4 +1,6 @@
 import "./Hero.css"
+
+
 function Hero({ label, title, description, buttonText, buttonLink }) {
   return (
 
