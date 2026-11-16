@@ -1,7 +1,7 @@
 import './Adopt.css';
-import Hero from '../components/Hero';
-import Card from '../components/Card';
-import { getAnimals } from '../services/getAnimals'; 
+import Hero from '../../components/Hero/Hero';
+import Card from '../../components/Card/Card';
+import { getAnimals } from '../../services/getAnimals'; 
 import { useEffect, useState } from 'react'; 
 function Adopt() {
     const [animals, setAnimals] = useState([]);
