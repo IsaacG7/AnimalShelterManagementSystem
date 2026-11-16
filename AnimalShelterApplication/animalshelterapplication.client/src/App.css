@@ -1,8 +1,21 @@
-﻿#root {
-    
+#root {
     width: 100%;
     min-height: 100%;
 
+    /*COLORS*/
+    /* Brand */
+    --color-primary: #385b48;
+    --color-primary-dark: #294536;
+    --color-accent: #e3a21a;
+    --color-accent-hover: #c98a12;
+    /* Neutrals */
+    --color-bg: #faf8f3;
+    --color-surface: #dce7dc;
+    --color-border: #c8d2c8;
+    --color-text: #292d29;
+    --color-text-muted: #444b44;
+    /* Semantic */
+    --color-error: #b3392f;
 }
 
 th, td {
