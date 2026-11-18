@@ -17,6 +17,11 @@ public class AnimalEntityConfiguration : IEntityTypeConfiguration<AnimalEntity>
             .HasMaxLength(100)
             .IsUnicode(false);
 
+        builder.Property(a => a.Species)
+            .IsRequired()
+            .HasMaxLength(100)
+            .IsUnicode(false);
+
         builder.Property(a => a.DateOfBirth)
             .HasColumnType("date");
 

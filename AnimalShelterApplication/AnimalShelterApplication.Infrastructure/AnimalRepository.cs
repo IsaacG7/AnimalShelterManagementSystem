@@ -45,6 +45,7 @@ namespace AnimalShelterApplication.Infrastructure
 
                 Id = animalEntity.AnimalId,
                 Name = animalEntity.Name,
+                Species = animalEntity.Species,
                 Gender = animalEntity.Gender,
                 DateOfBirth = animalEntity.DateOfBirth,
                 Description = animalEntity.Description,

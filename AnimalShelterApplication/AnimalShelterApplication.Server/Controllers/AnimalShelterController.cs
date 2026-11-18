@@ -26,6 +26,7 @@ namespace AnimalShelterApplication.Server.Controllers
         {
             Id = 1,
             Name = "Buddy",
+            Species = "Dog",
             Breed = "Golden Retriever",
             Gender = "Male",
             DateOfBirth = new DateOnly(2022, 5, 10),
@@ -36,6 +37,7 @@ namespace AnimalShelterApplication.Server.Controllers
         {
             Id = 2,
             Name = "Luna",
+            Species = "Cat",
             Breed = "Domestic Shorthair",
             Gender = "Female",
             DateOfBirth = new DateOnly(2023, 2, 15),
@@ -46,6 +48,7 @@ namespace AnimalShelterApplication.Server.Controllers
         {
             Id = 3,
             Name = "Max",
+            Species = "Dog",
             Breed = "German Shepherd",
             Gender = "Male",
             DateOfBirth = new DateOnly(2021, 8, 20),
