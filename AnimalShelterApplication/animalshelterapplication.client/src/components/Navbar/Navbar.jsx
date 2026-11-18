@@ -26,13 +26,18 @@ function Navbar() {
                 </div>
 
 
-                { /* clerk components for user sign in*/}
                 <Show when="signed-out">
-                    <SignInButton>
-                        <button className="nav-logout" >
-                            Log in
-                        </button>
-                    </SignInButton>
+                    <div className="nav-auth">
+                        <SignInButton>
+                            <button className="nav-login">
+                                Log In
+                            </button>
+                        </SignInButton>
+
+                        <Link to="/sign-up" className="nav-register">
+                            Register
+                        </Link>
+                    </div>
                 </Show>
 
                 <Show when="signed-in">
