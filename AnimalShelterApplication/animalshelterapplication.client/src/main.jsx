@@ -19,14 +19,12 @@ function Root() {
             appearance={{
                 variables: {
                     colorPrimary: 'var(--color-primary)',
-                    colorShadow:'var(--color-accent)',
+                    colorShadow:'none',
                     colorText: 'var(--color-text)',
+                    colorBorder: 'var(--color-accent)'
                 },
-                elements: {
-                    footer: {
-                        display: 'none',
-                    },
-                },
+              
+               
             }}
         >
             <App />

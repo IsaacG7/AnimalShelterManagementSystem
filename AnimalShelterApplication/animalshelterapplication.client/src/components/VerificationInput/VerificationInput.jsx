@@ -27,9 +27,6 @@ function VerificationInput({ onVerify, onResend, email, error, isLoading }) {
                 <form onSubmit={handleSubmit} className="verification-form">
 
                     <div className="input-group">
-                        <label htmlFor="verification-code">
-                            Verification Code:
-                        </label>
 
                         <input
                             type="text"
@@ -38,7 +35,7 @@ function VerificationInput({ onVerify, onResend, email, error, isLoading }) {
                             className="input"
                             value={code}
                             onChange={(event) => {
-                                setCode(event.target.value.replace(/\D/g, ''));
+                                setCode(event.target.value.replace(/\D/g, ''));//replace non digits with ''
                             }}
                             inputMode="numeric"
                             autoComplete="one-time-code"

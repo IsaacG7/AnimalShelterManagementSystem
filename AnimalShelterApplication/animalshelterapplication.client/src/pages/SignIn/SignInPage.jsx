@@ -4,7 +4,7 @@ function SignInPage() {
     return (
         <main className="sign-in-page">
             <div className="sign-in-form">
-                <SignIn />
+                <SignIn transferable={false} signUpUrl="/sign-up" withSignUp={false} />
             </div>
         </main>
     )

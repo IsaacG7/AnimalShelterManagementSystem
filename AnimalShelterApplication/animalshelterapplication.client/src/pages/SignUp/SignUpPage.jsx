@@ -1,85 +1,162 @@
 
 import { useState } from 'react';
-import { useSignUp, useAuth } from '@clerk/react';
+import { useSignUp } from '@clerk/react';
 import { useNavigate } from 'react-router-dom';
-import VerificationInput from "../../components/VerificationInput/VerificationInput"
+import VerificationInput from "../../components/VerificationInput/VerificationInput";
 import './SignUpPage.css';
-function SignUpPage() {
-    // --- useSignUp() clerk hook
-    //signUp	    Provides methods to create and manage a registration attempt
-    //errors	    Provides errors returned by Clerk during registration
-    //fetchStatus	Tells you whether Clerk is currently processing a request
-    const { signUp, errors, fetchStatus } = useSignUp();
-    //------------------------------------------------------------------------
 
+function SignUpPage() {
+
+    const { signUp, fetchStatus } = useSignUp();
 
     const navigate = useNavigate();
 
-    // State for this page ---------------------------------------------------
-    const [error, setError] = useState("");//used for error on form submission
+    // State for this page --------------------------------
+    const [error, setError] = useState('');
 
-    const [isVerifying, setIsVerifying] = useState(false);//used to track if a user needs to verify the code
+    const [isVerifying, setIsVerifying] = useState(false);
 
-    const [formData, setFormData] = useState({ //form data 
+    const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
         password: '',
-        address: '',
+        verifyPassword: '',
         phoneNumber: '',
         dateOfBirth: '',
         isVolunteer: false
     });
-    //------------------------------------------------------------------------
+    // ----------------------------------------------------
+
+
+    // handle changes to form inputs
     function handleChange(e) {
+
         const fieldName = e.target.name;
         let fieldValue;
 
         if (e.target.type === 'checkbox') {
-            fieldValue = e.target.checked;   // true or false
+            fieldValue = e.target.checked;
         } else {
-            fieldValue = e.target.value;     // whatever the user typed
+            fieldValue = e.target.value;
         }
 
-        setFormData((prev) => {
-            return {
-                ...prev,
-                [fieldName]: fieldValue
-            };
-        });
+        setFormData((prev) => ({
+            ...prev,
+            [fieldName]: fieldValue
+        }));
     }
 
+    // verify the email verification code
+    async function handleVerifyAsync(verificationCode) {
+
+        setError('');
+
+        try {
+
+            const { error } = await signUp.verifications.verifyEmailCode({
+                code: verificationCode
+            });
+
+            if (error) {
+                setError(error.longMessage || 'Verification failed.');
+                return;
+            }
+
+            // Check whether signup requirements are complete
+            if (signUp.status === 'complete') {
+
+                //navigate home and give them a valid session?
+                await signUp.finalize({
+                    navigate: async () => {
+                        navigate('/');
+                    }
+                });
+
+            } else {
+                setError(`Your signup is not yet complete. ${signUp.status}`);
+            }
+
+        } catch (err) {
+            setError(err.errors?.[0]?.longMessage || 'Verification failed.');
+        }
+    }
+
+    // Resend the verification code
+    async function handleResendAsync() {
+
+        setError('');
+
+        try {
+            //resend email
+            const { error } = await signUp.verifications.sendEmailCode();
+
+            if (error) {
+                setError(error.longMessage || 'Unable to resend verification code.');
+            }
+
+        } catch (err) {
+            setError(err.errors?.[0]?.longMessage || 'Unable to resend verification code.');
+        }
+    }
+
+    // Submit the registration form
     async function handleSubmitAsync(event) {
+
         event.preventDefault();
 
-        const result = await signUp.password({
-            emailAddress: formData.email,
-            password: formData.password,
-            firstName: formData.firstName,
-            lastName: formData.lastName
-        });
-
-        if (result.error) {
-            setError(result.error);
+        //make sure passwords match
+        if (formData.password !== formData.verifyPassword) {
+            setError('Passwords do not match!');
             return;
         }
 
-        await signUp.verifications.sendEmailCode();
+        setError('');
+
+        try {
+
+            const { error } = await signUp.password({
+                emailAddress: formData.email,
+                password: formData.password,
+                firstName: formData.firstName,
+                lastName: formData.lastName
+            });
+
+            if (error) {
+                setError(error.longMessage || 'Something went wrong.');
+                return;
+            }
+
+            // Send email verification code
+            const { error: verificationError } =
+                await signUp.verifications.sendEmailCode();
+
+            if (verificationError) {
+                setError(verificationError.longMessage || 'Unable to send verification code.');
+                return;
+            }
+
+            // Switch to verification screen
+            setIsVerifying(true);
+
+        } catch (err) {
+            setError(err.errors?.[0]?.longMessage || 'Something went wrong.');
+        }
     }
 
-
     return (
-
         <main className="signup-container">
 
             {isVerifying ? (
+
                 <VerificationInput
                     email={formData.email}
-                    onVerify={handleVerify}
-                    onResend={handleResend}
+                    onVerify={handleVerifyAsync}
+                    onResend={handleResendAsync}
                     error={error}
-                    isLoading={isVerifying}
+                    isLoading={fetchStatus === 'fetching'}
                 />
+
             ) : (
 
                 <div className="signup-card">
@@ -91,9 +168,19 @@ function SignUpPage() {
                         <p>
                             Join GL Animal Rescue and help make a difference.
                         </p>
+
                     </div>
 
-                    <form className="form-container" onSubmit={(event) => handleSubmitAsync(event)}>
+                    {error && (
+                        <p className="verification-error">
+                            {error}
+                        </p>
+                    )}
+
+                    <form
+                        className="form-container"
+                        onSubmit={handleSubmitAsync}
+                    >
 
                         <div className="input-group">
                             <label htmlFor="first-name">First Name:</label>
@@ -143,23 +230,15 @@ function SignUpPage() {
                                 onChange={handleChange}
                                 minLength={15}
                                 maxLength={128}
-                                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"
-                                title="Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character."
+                                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{15,}"
+                                title="Password must contain at least 15 characters, one uppercase letter, one lowercase letter, one number, and one special character."
                                 required
                             />
                         </div>
 
-                        <div className="input-group">
-                            <label htmlFor="address">Address:</label>
-                            <input
-                                type="text"
-                                id="address"
-                                name="address"
-                                className="input"
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
+
+
+
 
                         <div className="input-group">
                             <label htmlFor="phone-num">Phone Number:</label>
@@ -169,8 +248,24 @@ function SignUpPage() {
                                 name="phoneNumber"
                                 className="input"
                                 onChange={handleChange}
-                                pattern="^(\+1\s?)?(\(\d{3}\)|\d{3})[\s.\-]?\d{3}[\s.\-]?\d{4}$"
+                                pattern="^(\+?1[\-.\s]?)?\(?[2-9][0-9]{2}\)?[\-.\s]?[2-9][0-9]{2}[\-.\s]?[0-9]{4}$"
                                 title="Enter a valid US phone number, such as 417-555-1234."
+                                required
+                            />
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="verify-password">Re-Enter Password:</label>
+                            <input
+                                type="password"
+                                id="verify-password"
+                                name="verifyPassword"
+                                className="input"
+                                onChange={handleChange}
+                                minLength={15}
+                                maxLength={128}
+                                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{15,}"
+                                title="Password must contain at least 15 characters, one uppercase letter, one lowercase letter, one number, and one special character."
                                 required
                             />
                         </div>
@@ -188,23 +283,32 @@ function SignUpPage() {
                         </div>
 
                         <div className="input-group volunteer">
-                            <label htmlFor="usr-group">Register As A Volunteer?</label>
+                            <label htmlFor="usr-group">
+                                Register As A Volunteer?
+                            </label>
                             <input
                                 type="checkbox"
                                 id="usr-group"
-                                name="userGroup"
+                                name="isVolunteer"
                                 className="volunteer-checkbox"
                                 onChange={handleChange}
                             />
                         </div>
 
-                        <button className="create-button" type="submit">
-                            Create Account
+                        <button
+                            className="create-button"
+                            type="submit"
+                            disabled={fetchStatus === 'fetching'}
+                        >
+                            {fetchStatus === 'fetching'
+                                ? 'Creating Account...'
+                                : 'Create Account'}
                         </button>
 
                     </form>
 
-                </div>)}
+                </div>
+            )}
 
         </main>
     );
