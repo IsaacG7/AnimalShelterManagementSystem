@@ -1,6 +1,7 @@
 import './Adopt.css';
 import Card from '../../components/Card/Card';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import AdoptionModal from '../../components/AdoptionModal/AdoptionModal';
 import AnimalFilters from '../../components/AnimalFilters/AnimalFilters';
 import {
     getSelectedFilters,
@@ -16,6 +17,7 @@ function Adopt() {
     const [displayAnimals, setDisplayAnimals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         async function fetchAnimals() {
@@ -110,12 +112,21 @@ function Adopt() {
                                 title={displayAnimals.name}
                                 description={`${displayAnimals.species} | ${displayAnimals.breed} | ${displayAnimals.gender}`}
                                 buttonText="Meet Me"
+                                onAction={() => setIsModalOpen(true)}
                             />
                         ))}
                     </div>
                     )}
                 </div>
+
             </div>
+            {
+        isModalOpen && (
+            <AdoptionModal
+                onClose={() => setIsModalOpen(false)}
+            />
+        )
+    }
         </main>
     
     );
