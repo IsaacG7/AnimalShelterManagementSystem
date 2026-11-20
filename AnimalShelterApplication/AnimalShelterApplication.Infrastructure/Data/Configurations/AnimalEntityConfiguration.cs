@@ -41,6 +41,10 @@ public class AnimalEntityConfiguration : IEntityTypeConfiguration<AnimalEntity>
             .HasMaxLength(100)
             .IsUnicode(false);
 
+        builder.Property(a => a.Weight)
+            .HasMaxLength(100)
+            .IsUnicode(false);
+
         builder.Property(a => a.BehavioralDetails)
             .HasMaxLength(300)
             .IsUnicode(false);

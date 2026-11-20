@@ -12,6 +12,7 @@ namespace AnimalShelterApplication.Domain.Models
         public string Species { get; set; }
         public string Breed { get; set; }
         public string Gender { get; set; }
+        public string Weight { get; set; }
         public DateOnly DateOfBirth { get; set; }
         public string Description { get; set; }
         public AnimalAdptStatus Status { get; set; }
