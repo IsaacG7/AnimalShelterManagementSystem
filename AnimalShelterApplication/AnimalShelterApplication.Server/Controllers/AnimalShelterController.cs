@@ -25,10 +25,12 @@ namespace AnimalShelterApplication.Server.Controllers
         new Animal
         {
             Id = 1,
-            Name = "Buddy",
-            Breed = "Golden Retriever",
+            Name = "Bently",
+            Species = "Dog",
+            Breed = "Corgi",
             Gender = "Male",
-            DateOfBirth = new DateOnly(2022, 5, 10),
+            Weight = "50",
+            DateOfBirth = new DateOnly(2026, 5, 10),
             Description = "A friendly and energetic dog who loves playing fetch."
         },
 
@@ -36,8 +38,10 @@ namespace AnimalShelterApplication.Server.Controllers
         {
             Id = 2,
             Name = "Luna",
+            Species = "Cat",
             Breed = "Domestic Shorthair",
             Gender = "Female",
+            Weight = "5",
             DateOfBirth = new DateOnly(2023, 2, 15),
             Description = "A gentle cat who enjoys cuddles and sunny windowsills."
         },
@@ -46,8 +50,10 @@ namespace AnimalShelterApplication.Server.Controllers
         {
             Id = 3,
             Name = "Max",
+            Species = "Dog",
             Breed = "German Shepherd",
             Gender = "Male",
+            Weight = "80",
             DateOfBirth = new DateOnly(2021, 8, 20),
             Description = "An intelligent and loyal dog looking for a loving home."
         }

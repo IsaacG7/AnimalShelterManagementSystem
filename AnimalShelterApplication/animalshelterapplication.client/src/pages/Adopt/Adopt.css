@@ -1,3 +1,64 @@
 .Adopt {
-    background-color: #FAF8F3;
+    
+    background-color: var(--color-bg);
+    width: 100%;
+    padding: 24px;
+
+}
+
+.adopt-content {
+
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+
+}
+
+.animal-content {
+
+    min-width: 0;
+
+}
+
+.animal-list {
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-content: start;
+
+}
+
+@media (max-width: 900px) {
+
+    .adopt-content {
+
+        grid-template-columns: 200px minmax(0, 1fr);
+        gap: 16px;
+
+    }
+
+    .animal-list {
+
+        gap: 16px;
+
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .adopt-content {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .animal-list {
+
+        grid-template-columns: 1fr;
+
+    }
+
 }
