@@ -1,7 +1,12 @@
-#root {
-    width: 100%;
-    min-height: 100%;
 
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+:root {
+    /*FONTS*/
+    font-family: "Libre Baskerville", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
     /*COLORS*/
     /* Brand */
     --color-primary: #385b48;
@@ -14,8 +19,16 @@
     --color-border: #c8d2c8;
     --color-text: #292d29;
     --color-text-muted: #444b44;
-    /* Semantic */
     --color-error: #b3392f;
+
+
+    background-color: var(--color-bg);
+    width: 100%;
+    min-height: 100%;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
 }
 
 th, td {

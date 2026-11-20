@@ -1,0 +1,83 @@
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: var(--color-bg);
+}
+
+.signup-card {
+    width: 100%;
+    max-width: 650px;
+    background-color: white;
+    border: 1px solid var(--color-accent);
+    border-radius: 12px;
+    padding: 40px;
+}
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+    .form-header h1 {
+        color: var(--color-primary);
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .form-header p {
+        opacity:75%;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 40%;
+}
+
+.volunteer{
+    flex-direction:row;
+    gap:20px;
+    align-items:end;
+    margin-bottom:5px;
+}
+.volunteer-checkbox {
+    accent-color: var(--color-primary);
+}
+
+
+.input {
+    border: 2px solid var(--color-primary);
+    border-radius: 7px;
+    padding:5px;
+}
+    .input:focus {
+        border:2px solid var(--color-primary-dark);
+        outline:none;
+        background-color:var(--color-bg);
+    }
+.create-button {
+    border: 1px solid var(--color-primary);
+    color: white;
+    
+    padding: 8px 8px;
+    border-radius: 7px;
+    background-color: var(--color-primary);
+}
+
+    .create-button:hover {
+        background-color: var(--color-primary-dark);
+    }
+

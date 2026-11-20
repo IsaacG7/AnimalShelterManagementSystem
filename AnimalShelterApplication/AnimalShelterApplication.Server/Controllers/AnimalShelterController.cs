@@ -9,16 +9,32 @@ namespace AnimalShelterApplication.Server.Controllers
     public class  AnimalShelterController : ControllerBase
     {
         private readonly IAnimalService _animalService;
+        private readonly IUserService _userService;
 
-      public AnimalShelterController(IAnimalService animalService)
-        {
+      public AnimalShelterController(IAnimalService animalService,IUserService user)
+      {
             _animalService = animalService;
+            _userService = user;
+      }
+
+
+        [HttpPost("User")]
+        public async Task<ActionResult> CreateUserAsync(User user)
+        {
+            var wasAdded = await _userService.AddUserAsync(user);
+            if (wasAdded)
+            {
+                return Ok();
+            }else
+            {
+                return BadRequest();
+            }
+
         }
 
 
-
         [HttpGet("Animals")]
-        public ActionResult<List<Animal>> GetAnimals()
+        public async Task<ActionResult<List<Animal>>> GetAnimalsAsync()
         {
             var animals = new List<Animal>
     {
