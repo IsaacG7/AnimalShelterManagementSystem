@@ -11,5 +11,6 @@
   <ItemGroup>
     <Folder Include="src\assets\pages\" />
     <Folder Include="src\components\AnimalFilters\" />
+    <Folder Include="src\components\AnimalModal\" />
   </ItemGroup>
 </Project>

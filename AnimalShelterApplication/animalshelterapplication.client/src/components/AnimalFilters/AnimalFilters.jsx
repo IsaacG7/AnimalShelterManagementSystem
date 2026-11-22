@@ -3,7 +3,7 @@ import './AnimalFilters.css';
 function AnimalFilters({ onFilterChange }) {
   return (
       <div className="AnimalFilters">
-          <h2>Fitler Animals</h2>
+          <h2>Filter Animals</h2>
 
           <div className="filter-selection">
 

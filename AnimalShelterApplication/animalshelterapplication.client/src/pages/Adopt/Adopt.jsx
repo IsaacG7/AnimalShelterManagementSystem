@@ -1,6 +1,8 @@
 import './Adopt.css';
 import Card from '../../components/Card/Card';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import AnimalModal from '../../components/AnimalModal/AnimalModal';
+import AnimalModal_HealthInfo from '../../components/AnimalModal_HealthInfo/AnimalModal_HealthInfo';
 import AdoptionModal from '../../components/AdoptionModal/AdoptionModal';
 import AnimalFilters from '../../components/AnimalFilters/AnimalFilters';
 import {
@@ -17,7 +19,11 @@ function Adopt() {
     const [displayAnimals, setDisplayAnimals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAnimalModalOpen, setIsAnimalModalOpen] = useState(false);
+    const [isHealthModalOpen, setIsHealthModalOpen] = useState(false);
+    const [isAdoptionModalOpen, setIsAdoptionModalOpen] = useState(false);
+    const [displayAnimal, setDisplayAnimal] = useState(null);
+    
 
     useEffect(() => {
         async function fetchAnimals() {
@@ -84,6 +90,26 @@ function Adopt() {
 
     }
 
+    function handleAnimalClick(animal) {
+        setDisplayAnimal(animal);
+        setIsAnimalModalOpen(true);
+    }
+
+    function handleAnimalClose() {
+        setIsAnimalModalOpen(false);
+        setIsHealthModalOpen(false);
+    }
+
+    function handleHealthClick() {
+        setIsAnimalModalOpen(false);
+        setIsHealthModalOpen(true);
+    }
+
+    function handleHealthClose() {
+        setIsHealthModalOpen(false);
+        setIsAnimalModalOpen(true);
+    }
+
     return (
     
         <main className="Adopt">
@@ -106,13 +132,13 @@ function Adopt() {
 
                     <div className="animal-list">
 
-                        {displayAnimals.map(displayAnimals => (
+                        {displayAnimals.map(displayAnimal => (
                             <Card
-                                key={displayAnimals.id}
-                                title={displayAnimals.name}
-                                description={`${displayAnimals.species} | ${displayAnimals.breed} | ${displayAnimals.gender}`}
+                                key={displayAnimal.id}
+                                title={displayAnimal.name}
+                                description={`${displayAnimal.species} | ${displayAnimal.breed} | ${displayAnimal.gender}`}
                                 buttonText="Meet Me"
-                                onAction={() => setIsModalOpen(true)}
+                                onAction={() => handleAnimalClick(displayAnimal)}
                             />
                         ))}
                     </div>
@@ -120,13 +146,29 @@ function Adopt() {
                 </div>
 
             </div>
-            {
-        isModalOpen && (
-            <AdoptionModal
-                onClose={() => setIsModalOpen(false)}
-            />
-        )
-    }
+            {isAnimalModalOpen && (
+                <AnimalModal
+                    animal={displayAnimal}
+                    onClose={handleAnimalClose}
+                    onAdopt={() => setIsAdoptionModalOpen(true)}
+                    onHealth={handleHealthClick}
+                />
+            )}
+
+            {isHealthModalOpen && (
+                <AnimalHealthModal
+                    animal={displayAnimal}
+                    onClose={handleHealthClose}
+                    onAdopt={() => setIsAdoptionModalOpen(true)}
+                />
+            )}
+
+            {isAdoptionModalOpen && (
+                <AdoptionModal
+                    animal={displayAnimal}
+                    onClose={() => setIsAdoptionModalOpen(false)}
+                />
+            )}
         </main>
     
     );

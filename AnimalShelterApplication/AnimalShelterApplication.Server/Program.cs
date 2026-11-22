@@ -17,6 +17,9 @@ builder.Services.AddScoped<IAnimalService, AnimalService>();
 
 builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
 
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.AddDbContext<AnimalShelterDbContext>(optionsBuilder =>
 {
     optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
