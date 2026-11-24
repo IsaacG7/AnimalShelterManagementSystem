@@ -1,7 +1,7 @@
 import './AnimalModal.css';
 import { useState } from 'react';
 
-function AnimalModal({ animal, onClose, onAdopt, onHealth }) {
+function AnimalModal({ animal, onClose, onAdopt}) {
 
     const [isFavorite, setIsFavorite] = useState(false);
 

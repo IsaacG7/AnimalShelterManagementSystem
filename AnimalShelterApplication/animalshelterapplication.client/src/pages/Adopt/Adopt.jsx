@@ -2,7 +2,6 @@ import './Adopt.css';
 import Card from '../../components/Card/Card';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import AnimalModal from '../../components/AnimalModal/AnimalModal';
-import AnimalModal_HealthInfo from '../../components/AnimalModal_HealthInfo/AnimalModal_HealthInfo';
 import AdoptionModal from '../../components/AdoptionModal/AdoptionModal';
 import AnimalFilters from '../../components/AnimalFilters/AnimalFilters';
 import {
@@ -20,7 +19,6 @@ function Adopt() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isAnimalModalOpen, setIsAnimalModalOpen] = useState(false);
-    const [isHealthModalOpen, setIsHealthModalOpen] = useState(false);
     const [isAdoptionModalOpen, setIsAdoptionModalOpen] = useState(false);
     const [displayAnimal, setDisplayAnimal] = useState(null);
     
@@ -97,18 +95,8 @@ function Adopt() {
 
     function handleAnimalClose() {
         setIsAnimalModalOpen(false);
-        setIsHealthModalOpen(false);
     }
 
-    function handleHealthClick() {
-        setIsAnimalModalOpen(false);
-        setIsHealthModalOpen(true);
-    }
-
-    function handleHealthClose() {
-        setIsHealthModalOpen(false);
-        setIsAnimalModalOpen(true);
-    }
 
     return (
     
@@ -150,15 +138,6 @@ function Adopt() {
                 <AnimalModal
                     animal={displayAnimal}
                     onClose={handleAnimalClose}
-                    onAdopt={() => setIsAdoptionModalOpen(true)}
-                    onHealth={handleHealthClick}
-                />
-            )}
-
-            {isHealthModalOpen && (
-                <AnimalHealthModal
-                    animal={displayAnimal}
-                    onClose={handleHealthClose}
                     onAdopt={() => setIsAdoptionModalOpen(true)}
                 />
             )}
