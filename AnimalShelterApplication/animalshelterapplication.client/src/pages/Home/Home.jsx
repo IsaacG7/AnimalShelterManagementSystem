@@ -14,7 +14,7 @@ function Home() {
                 title="Every Animal Deserves a Loving Home."
                 description="Meet your new best friend and give a shelter animal the loving home they've always wanted."
                 buttonText="Meet Our Animals!"
-                buttonLink="/adopt"
+                buttonLink="/Adopt"
             />
 
             <div className="card-Container">
@@ -37,12 +37,10 @@ function Home() {
             </div>
 
             <Footer
-                footerTitle2="title 1"
-                footerText2="descrpition"
-                footerTitle3="title 2"
+                footerTitle3="title 3"
                 footerText3="description"
             />
-            
+        
         </main>
     );
 }
