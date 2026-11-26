@@ -2,13 +2,15 @@
 import { useState } from 'react';
 import { useSignUp } from '@clerk/react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@clerk/react'
 import VerificationInput from "../../components/VerificationInput/VerificationInput";
+import  CreateUserAsync  from "../../services/UserService"
 import './SignUpPage.css';
 
 function SignUpPage() {
 
     const { signUp, fetchStatus } = useSignUp();
-
+    const { getToken } = useAuth(); 
     const navigate = useNavigate();
 
     // State for this page --------------------------------
@@ -47,13 +49,13 @@ function SignUpPage() {
         }));
     }
 
-    // verify the email verification code
+    // verify the email verification code and create the user
     async function handleVerifyAsync(verificationCode) {
 
         setError('');
 
         try {
-
+            //send the email to clerk and await success
             const { error } = await signUp.verifications.verifyEmailCode({
                 code: verificationCode
             });
@@ -64,17 +66,43 @@ function SignUpPage() {
             }
 
             // Check whether signup requirements are complete
-            if (signUp.status === 'complete') {
-
-                //navigate home and give them a valid session?
-                await signUp.finalize({
-                    navigate: async () => {
-                        navigate('/');
-                    }
-                });
-
-            } else {
+            if (signUp.status !== 'complete') {
                 setError(`Your signup is not yet complete. ${signUp.status}`);
+                return;
+            }
+
+            const user = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                dateOfBirth: formData.dateOfBirth,
+                phoneNumber: formData.phoneNumber,
+                email: formData.email,
+                isVolunteer: formData.isVolunteer
+            };
+
+            // activate the new session; navigation is handled below, after the POST
+            const { error: finalizeError } = await signUp.finalize({
+                navigate: () => { }
+            });
+
+            if (finalizeError) {
+                setError(finalizeError.longMessage || 'Unable to finish signing you in.');
+                return;
+            }
+
+            // the session is active now, so a token is available
+            const token = await getToken();
+
+            if (!token) {
+                setError('Signed in, but no session token was available.');
+                return;
+            }
+
+            try {
+                await CreateUserAsync(user, token); //create the user by POST to server
+                navigate('/');
+            } catch (err) {
+                setError('Your account was created, but saving your profile failed. ' + err);
             }
 
         } catch (err) {

@@ -29,6 +29,8 @@ public class AnimalEntityConfiguration : IEntityTypeConfiguration<AnimalEntity>
             .HasMaxLength(300)
             .IsUnicode(false);
 
+        builder.Property(a => a.Weight);
+
         builder.Property(a => a.Breed)
             .HasMaxLength(100)
             .IsUnicode(false);
