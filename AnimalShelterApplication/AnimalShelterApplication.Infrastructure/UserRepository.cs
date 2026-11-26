@@ -53,7 +53,7 @@ namespace AnimalShelterApplication.Infrastructure
                 UserGroup = user.UserGroup,
                 DateOfBirth = user.DateOfBirth,
                 Email = user.Email,
-                CreatedAt = user.CreatedAt,
+                CreatedAt = DateTime.UtcNow,
                 PhoneNumber = user.PhoneNumber
             };
         }

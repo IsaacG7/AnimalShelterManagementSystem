@@ -1,5 +1,7 @@
 using AnimalShelterApplication.Application.Interfaces;
 using AnimalShelterApplication.Domain.Models;
+using AnimalShelterApplication.Server.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalShelterApplication.Server.Controllers
@@ -18,9 +20,21 @@ namespace AnimalShelterApplication.Server.Controllers
       }
 
 
-        [HttpPost("User")]
-        public async Task<ActionResult> CreateUserAsync(User user)
+        [Authorize]
+        [HttpPost("newUser")]
+        public async Task<ActionResult> CreateUserAsync(NewUser newUser)
         {
+            var clerkUserId = User.FindFirst("sub")?.Value;
+
+            if (string.IsNullOrEmpty(clerkUserId))
+            {
+                return Unauthorized();
+            }
+
+            User user = MapToUser(newUser);
+            
+            user.ClerkUserId = clerkUserId;
+
             var wasAdded = await _userService.AddUserAsync(user);
             if (wasAdded)
             {
@@ -29,7 +43,6 @@ namespace AnimalShelterApplication.Server.Controllers
             {
                 return BadRequest();
             }
-
         }
 
 
@@ -45,7 +58,7 @@ namespace AnimalShelterApplication.Server.Controllers
             Species = "Dog",
             Breed = "Corgi",
             Gender = "Male",
-            Weight = "50",
+            Weight = 39.2f,
             DateOfBirth = new DateOnly(2026, 5, 10),
             Description = "A friendly and energetic dog who loves playing fetch."
         },
@@ -57,7 +70,7 @@ namespace AnimalShelterApplication.Server.Controllers
             Species = "Cat",
             Breed = "Domestic Shorthair",
             Gender = "Female",
-            Weight = "5",
+            Weight = 5,
             DateOfBirth = new DateOnly(2023, 2, 15),
             Description = "A gentle cat who enjoys cuddles and sunny windowsills."
         },
@@ -69,13 +82,28 @@ namespace AnimalShelterApplication.Server.Controllers
             Species = "Dog",
             Breed = "German Shepherd",
             Gender = "Male",
-            Weight = "80",
+            Weight = 80,
             DateOfBirth = new DateOnly(2021, 8, 20),
             Description = "An intelligent and loyal dog looking for a loving home."
         }
     };
 
             return Ok(animals);
+        }
+
+
+
+        private User MapToUser(NewUser newUser)
+        {
+            return new User
+            {
+                FirstName = newUser.FirstName,
+                LastName = newUser.LastName,
+                UserGroup = newUser.IsVolunteer ? Domain.Enums.UserGroup.Volunteer : Domain.Enums.UserGroup.Customer,
+                PhoneNumber = newUser.PhoneNumber,
+                DateOfBirth = newUser.DateOfBirth,
+                Email = newUser.Email,
+            };
         }
     }
 }

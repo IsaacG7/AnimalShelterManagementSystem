@@ -23,7 +23,6 @@ function Root() {
                     colorText: 'var(--color-text)',
                     colorBorder: 'var(--color-accent)'
                 },
-              
                
             }}
         >

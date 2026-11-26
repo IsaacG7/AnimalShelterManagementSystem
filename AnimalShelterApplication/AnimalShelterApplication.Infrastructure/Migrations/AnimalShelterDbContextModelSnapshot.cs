@@ -148,10 +148,21 @@ namespace AnimalShelterApplication.Infrastructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(300)");
 
+                    b.Property<string>("Species")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<float>("Weight")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("real");
 
                     b.HasKey("AnimalId");
 
@@ -261,11 +272,6 @@ namespace AnimalShelterApplication.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ClerkUserId")
                         .IsRequired()

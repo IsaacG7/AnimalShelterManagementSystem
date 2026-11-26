@@ -30,9 +30,6 @@ public class UserEntityConfiguration : IEntityTypeConfiguration<UserEntity>
             .HasConversion<string>()
             .HasMaxLength(100);
 
-        builder.Property(u => u.Address)
-            .HasMaxLength(300);
-
         builder.Property(u => u.PhoneNumber)
             .HasMaxLength(50);
 

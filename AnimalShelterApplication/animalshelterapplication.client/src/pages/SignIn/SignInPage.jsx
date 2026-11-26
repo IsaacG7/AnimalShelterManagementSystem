@@ -4,7 +4,7 @@ function SignInPage() {
     return (
         <main className="sign-in-page">
             <div className="sign-in-form">
-                <SignIn transferable={false} signUpUrl="/sign-up" withSignUp={false} />
+                <SignIn transferable={false} signUpUrl="/sign-up" withSignUp={false} routing="path" path="/sign-in"/>
             </div>
         </main>
     )
