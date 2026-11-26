@@ -3,9 +3,9 @@ import './AnimalFilters.css';
 function AnimalFilters({ onFilterChange }) {
   return (
       <div className="AnimalFilters">
-          <h2>Fitler Animals</h2>
+          <h2>Filter Animals</h2>
 
-          <div className="filter-selection">
+          <div className="filter-section">
 
               <label>
 
@@ -39,7 +39,7 @@ function AnimalFilters({ onFilterChange }) {
 
           </div>
 
-          <div className="filter-selection">
+          <div className="filter-section">
 
               <h3>Gender</h3>
               <label>
@@ -63,7 +63,7 @@ function AnimalFilters({ onFilterChange }) {
 
           </div>
 
-          <div className="filter-selection">
+          <div className="filter-section">
 
               <h3>Age</h3>
               <label>
@@ -96,7 +96,7 @@ function AnimalFilters({ onFilterChange }) {
 
           </div>
 
-          <div className="filter-selection">
+          <div className="filter-section">
 
               <h3>Size</h3>
               <label>
