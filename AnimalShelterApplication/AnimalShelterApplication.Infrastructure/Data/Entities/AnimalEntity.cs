@@ -14,6 +14,7 @@ namespace AnimalShelterApplication.Infrastructure.Data.Entities
         public string Gender { get; set; }
         public float Weight { get; set; }
         public DateOnly DateOfBirth { get; set; }
+        public string? ImageUrl { get; set; }
         public string Description { get; set; }
         public AnimalAdptStatus Status { get; set; }
         public bool IsFixed { get; set; }

@@ -54,7 +54,8 @@ namespace AnimalShelterApplication.Infrastructure
                 IsFixed = animalEntity.IsFixed,
                 SpecialCareDetails = animalEntity.SpecialCareDetails,
                 Status = animalEntity.Status,
-                BehavioralDetails = animalEntity.BehavioralDetails
+                BehavioralDetails = animalEntity.BehavioralDetails,
+                ImageUrl = animalEntity?.ImageUrl == null ? "": animalEntity.ImageUrl,
             };
 
             foreach (var vaccinationEnt in animalEntity.Vaccinations)

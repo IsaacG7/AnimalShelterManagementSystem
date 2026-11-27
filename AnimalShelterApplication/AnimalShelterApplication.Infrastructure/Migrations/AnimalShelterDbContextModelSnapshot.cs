@@ -131,6 +131,11 @@ namespace AnimalShelterApplication.Infrastructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(300)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(300)");
+
                     b.Property<bool>("IsFixed")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")

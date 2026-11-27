@@ -49,46 +49,47 @@ namespace AnimalShelterApplication.Server.Controllers
         [HttpGet("Animals")]
         public async Task<ActionResult<List<Animal>>> GetAnimalsAsync()
         {
-            var animals = new List<Animal>
-    {
-        new Animal
-        {
-            Id = 1,
-            Name = "Bently",
-            Species = "Dog",
-            Breed = "Corgi",
-            Gender = "Male",
-            Weight = 39.2f,
-            DateOfBirth = new DateOnly(2026, 5, 10),
-            Description = "A friendly and energetic dog who loves playing fetch."
-        },
-
-        new Animal
-        {
-            Id = 2,
-            Name = "Luna",
-            Species = "Cat",
-            Breed = "Domestic Shorthair",
-            Gender = "Female",
-            Weight = 5,
-            DateOfBirth = new DateOnly(2023, 2, 15),
-            Description = "A gentle cat who enjoys cuddles and sunny windowsills."
-        },
-
-        new Animal
-        {
-            Id = 3,
-            Name = "Max",
-            Species = "Dog",
-            Breed = "German Shepherd",
-            Gender = "Male",
-            Weight = 80,
-            DateOfBirth = new DateOnly(2021, 8, 20),
-            Description = "An intelligent and loyal dog looking for a loving home."
-        }
-    };
-
+            var animals = await _animalService.GetAllAnimalsAsync();
             return Ok(animals);
+
+            //{
+            //    new Animal
+            //    {
+            //        Id = 1,
+            //        Name = "Bently",
+            //        Species = "Dog",
+            //        Breed = "Corgi",
+            //        Gender = "Male",
+            //        Weight = 39.2f,
+            //        DateOfBirth = new DateOnly(2026, 5, 10),
+            //        Description = "A friendly and energetic dog who loves playing fetch."
+            //    },
+
+            //    new Animal
+            //    {
+            //        Id = 2,
+            //        Name = "Luna",
+            //        Species = "Cat",
+            //        Breed = "Domestic Shorthair",
+            //        Gender = "Female",
+            //        Weight = 5,
+            //        DateOfBirth = new DateOnly(2023, 2, 15),
+            //        Description = "A gentle cat who enjoys cuddles and sunny windowsills."
+            //    },
+
+            //    new Animal
+            //    {
+            //        Id = 3,
+            //        Name = "Max",
+            //        Species = "Dog",
+            //        Breed = "German Shepherd",
+            //        Gender = "Male",
+            //        Weight = 80,
+            //        DateOfBirth = new DateOnly(2021, 8, 20),
+            //        Description = "An intelligent and loyal dog looking for a loving home."
+            //    }
+            //};
+
         }
 
 

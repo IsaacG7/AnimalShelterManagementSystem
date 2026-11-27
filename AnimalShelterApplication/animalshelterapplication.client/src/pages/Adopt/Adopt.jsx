@@ -127,6 +127,7 @@ function Adopt() {
                                 description={`${displayAnimal.species} | ${displayAnimal.breed} | ${displayAnimal.gender}`}
                                 buttonText="Meet Me"
                                 onAction={() => handleAnimalClick(displayAnimal)}
+                                imageUrl={displayAnimal.imageUrl }
                             />
                         ))}
                     </div>

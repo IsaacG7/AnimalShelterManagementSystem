@@ -22,6 +22,10 @@ public class AnimalEntityConfiguration : IEntityTypeConfiguration<AnimalEntity>
             .HasMaxLength(100)
             .IsUnicode(false);
 
+        builder.Property(a => a.ImageUrl)
+            .HasMaxLength(300)
+            .IsUnicode(false);
+
         builder.Property(a => a.DateOfBirth)
             .HasColumnType("date");
 
