@@ -5,8 +5,37 @@ import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import shelterDog from '../../assets/images.jpg';
 import HeroPhoto from '../../assets/Hero-image.jpg';
+import Carousel from '../../components/Carousel/Carousel';
+import { useEffect, useState } from 'react';
+import { getNAnimals } from '../../services/getNAnimals'; 
+
 
 function Home() {
+    const [animals, setAnimals] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        async function fetchAnimals() {
+            try {
+                setLoading(true);
+                setError(null);
+
+                const data = await getNAnimals(3);
+
+                setAnimals(data);
+                
+            } catch (error) {
+                console.error(error);
+                setError('Unable to load animals. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchAnimals();
+    }, []);
+
     const navigate = useNavigate();
     return (
         <main className="Home">
@@ -19,7 +48,7 @@ function Home() {
                 image={HeroPhoto}
             />
 
-            <div className="card-Container">
+            {/*<div className="card-Container">
 
                 <Card
                     title="Find Your Perfect Companion"
@@ -36,7 +65,22 @@ function Home() {
                     imageUrl={shelterDog}
                 />
 
-            </div>
+            </div>*/}
+
+            <Carousel heading="Meet Some of Our Animals!">
+
+                {animals.map(animal => (
+                    <Card
+                        key={animal.id}
+                        title={animal.name}
+                        description={`${animal.species} | ${animal.breed} | ${animal.gender}`}
+                        buttonText="See Our Animals!"
+                        onAction={() => navigate('/Adopt')}
+                    />
+                ))}
+                
+
+            </Carousel>
 
             <Footer
                 footerTitle3="title 3"

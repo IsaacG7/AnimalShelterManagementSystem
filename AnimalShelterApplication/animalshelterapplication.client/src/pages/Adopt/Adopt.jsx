@@ -21,7 +21,7 @@ function Adopt() {
     const [isAnimalModalOpen, setIsAnimalModalOpen] = useState(false);
     const [isAdoptionModalOpen, setIsAdoptionModalOpen] = useState(false);
     const [displayAnimal, setDisplayAnimal] = useState(null);
-    
+       
 
     useEffect(() => {
         async function fetchAnimals() {
