@@ -1,6 +1,7 @@
 import './About.css'
 import Hero from '../../components/Hero/Hero';
 import Footer from '../../components/Footer/Footer';
+import HeroPhoto from '../../assets/About-image.jpg';
 
 function About() {
     return (
@@ -16,6 +17,7 @@ function About() {
                 we'd love to hear from you. Please don't hesitate to contact us!"
                 buttonText="Contact us!"
                 buttonLink="/Contact"
+                image={HeroPhoto}
 
             />
 
