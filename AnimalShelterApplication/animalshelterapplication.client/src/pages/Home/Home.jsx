@@ -4,6 +4,7 @@ import Card from '../../components/Card/Card';
 import Footer from '../../components/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import shelterDog from '../../assets/images.jpg';
+import HeroPhoto from '../../assets/Hero-image.jpg';
 
 function Home() {
     const navigate = useNavigate();
@@ -14,7 +15,8 @@ function Home() {
                 title="Every Animal Deserves a Loving Home."
                 description="Meet your new best friend and give a shelter animal the loving home they've always wanted."
                 buttonText="Meet Our Animals!"
-                buttonLink="/adopt"
+                buttonLink="/Adopt"
+                image={HeroPhoto}
             />
 
             <div className="card-Container">
@@ -37,12 +39,10 @@ function Home() {
             </div>
 
             <Footer
-                footerTitle2="title 1"
-                footerText2="descrpition"
-                footerTitle3="title 2"
+                footerTitle3="title 3"
                 footerText3="description"
             />
-            
+        
         </main>
     );
 }

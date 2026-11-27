@@ -1,7 +1,7 @@
 import "./Hero.css"
 
 
-function Hero({ label, title, description, buttonText, buttonLink }) {
+function Hero({ label, title, description, buttonText, buttonLink, image, imageAlt="" }) {
   return (
 
     <section className="hero">
@@ -21,6 +21,14 @@ function Hero({ label, title, description, buttonText, buttonLink }) {
               </a>
 
           </div>
+
+          {image && (
+              <div className="hero-image">
+
+                  <img src={image} alt={imageAlt}/>
+
+              </div>
+          )}
 
     </section>
 

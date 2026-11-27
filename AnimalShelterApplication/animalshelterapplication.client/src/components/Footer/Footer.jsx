@@ -1,6 +1,6 @@
 import './Footer.css'
 
-function Footer({ footerTitle2, footerText2, footerTitle3, footerText3 }) {
+function Footer({ footerTitle3, footerText3 }) {
   return (
       <footer className="Footer">
 
@@ -26,8 +26,11 @@ function Footer({ footerTitle2, footerText2, footerTitle3, footerText3 }) {
 
           <div className="Footer-Column">
 
-              <h3>{footerTitle2}</h3>
-              <p>{footerText2}</p>
+              <h3>Animal Control - Springfield Animal Shelter</h3>
+
+              <p><a href="http://health.springfieldmo.gov/animalcontrol">Greene County Animal Control</a></p>
+              <p>(417)833-3592</p>
+              <p>4002 N Farmer Ave, Springfield, MO 65803</p>
 
           </div>
 

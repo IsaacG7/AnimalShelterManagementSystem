@@ -12,5 +12,6 @@
     <Folder Include="src\assets\pages\" />
     <Folder Include="src\components\AnimalFilters\" />
     <Folder Include="src\components\AnimalModal\" />
+    <Folder Include="src\pages\Contact\" />
   </ItemGroup>
 </Project>
